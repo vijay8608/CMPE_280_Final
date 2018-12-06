@@ -1,0 +1,13 @@
+#selectable .ui-selecting {
+    background-color: yellow;
+}
+
+#selectable .ui-selected {
+    background-color: black;
+    color: gray;
+}
+
+#selectable {
+	margin-left: 30%;
+	margin-right: 40%;
+}

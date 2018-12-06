@@ -1,0 +1,31 @@
+{
+  "name": "cmpe-280-bytekarma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IndiraBobburi/cmpe-280-bytekarma.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IndiraBobburi/cmpe-280-bytekarma/issues"
+  },
+  "homepage": "https://github.com/IndiraBobburi/cmpe-280-bytekarma#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "html2canvas": "^1.0.0-alpha.12",
+    "line-reader": "^0.4.0",
+    "mongoose": "^5.3.15",
+    "mongoose-int32": "^0.3.1",
+    "nodemon": "^1.18.7"
+  }
+}

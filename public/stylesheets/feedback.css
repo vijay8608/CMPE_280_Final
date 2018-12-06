@@ -1,0 +1,104 @@
+/*
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+}
+
+{
+    
+    margin-left: 300px;
+    margin: 30px;
+    width: 700px;
+}
+​
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+​
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+​
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+​
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+h3 {
+    text-align: center;
+}
+
+#fname {
+    height: 25px;
+}
+
+#lname {
+    height: 25px;
+}
+
+#state {
+    height: 25px;
+}
+
+.button {
+    height: 25px;
+}*/
+
+h2 {
+    text-align: center;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#state {
+    height: 40px;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.box {
+    width: 500px;
+    margin-left: 450px;
+    margin-top: 100px;
+    border-radius: 35px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}

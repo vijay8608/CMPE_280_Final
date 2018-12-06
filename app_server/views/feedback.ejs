@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Opioid Webpage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/feedback.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/popup.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/jquery-ui-theme/jquery-ui.min.css" />
+  <script type="text/javascript" src="/jquery-ui-theme/external/jquery/jquery.js"></script>
+  <script type="text/javascript" src="/jquery-ui-theme/jquery-ui.min.js"></script>
+</head>
+<body>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+  <!-- <a href="/home"><h2 class="center" >Opioid Webpage</h2></a> -->
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/home">Homepage</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/feedback">Feedback</a>
+    <a href="/aboutUs">About Us</a>
+    <!-- <a href="#">About Us</a> -->
+  </div>
+  
+  <h1 style="margin: 0 40% 0 40%">Feedback Form</h1>
+  <div class="box">
+
+    <form action="feedback" >
+
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+
+      <label for="email">Email id</label>
+      <input type="text" id="email" name="emailid" placeholder="Your email id">
+
+      <label for="phone">Phone</label>
+      <input type="text" id="phone" name="phonenumber" placeholder="(999) 999-9999">
+
+      <label for="fname">Feedback</label>
+      <input style="height: 150px" type="text" id="fdbk" name="feedbk" placeholder="Enter your feedback">
+<!--       <textarea rows="10" cols="80">
+      
+      </textarea> -->
+      <!-- <textarea rows="4" cols="50"> -->
+
+      <label for="dob">Date of Birth</label>
+      <input type="text" id="datepicker">
+
+      <label for="state">State</label>
+      <select id="state" name="state">
+        <option value="California">California</option>
+        <option value="Texas">Texas</option>
+        <option value="New York">New York</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <input class="ui-button ui-widget ui-corner-all submit" type="submit" value="Submit">
+    </form>
+    
+  </div>
+</body>
+
+<script>
+  $( function() {
+    $( "#dialog" ).dialog();
+  } );
+
+  $( function() {
+    $( ".widget input[type=submit], .widget a, .widget button" ).button();
+    $( ".submit" ).click( function( event ) {
+      event.preventDefault();
+      fname  = document.getElementById("fname").value;
+      lname  = document.getElementById("lname").value;
+      phone = document.getElementById("phone").value;
+      email = document.getElementById("email").value;
+      
+      errors = "";
+      
+      if (fname == "") {
+          errors += "Missing name.\n";
+      }
+
+      if (lname == "") {
+          errors += "Missing name.\n";
+      } 
+      
+      phoneRE = /^\(\d{3}\) *\d{3}-\d{4}$/;
+      if (!phone.match(phoneRE)){
+          errors += "Invalid phone number. " +
+                    "Example: (999) 999-9999\n";
+      } 
+      
+      emailRE = /^.+@.+\..{2,4}$/;
+      if (!email.match(emailRE)){
+          errors += "Invalid email address. " +
+                    "Should be xxxxx@xxxxx.xxx\n";
+      } 
+      
+      if (errors != "") {
+        alert(errors);
+        return false;
+      }else {
+
+        window.alert("Thank you "+fname+" " +lname+" for your valuable feedback. We will contact you at "+email+".");
+      }
+      } );
+  } );
+
+</script>
+
+<script type="text/javascript" src="/routes/nav.js"></script>
+<script type="text/javascript" src="/js/datepicker.js"></script>
+
+</html>

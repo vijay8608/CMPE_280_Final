@@ -1,0 +1,284 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/feedback.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/popup.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+      .button {
+        background-color: #52527a;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+    </style>
+
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      // google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+      google.charts.setOnLoadCallback(drawChart4);
+      google.charts.setOnLoadCallback(drawChart5);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it
+
+      function drawChart1() {
+          var columns=<%- columns %>;
+          var tableRow=<%- tableRow %>;
+
+          // Create the data table.
+          // var dataTable = new google.visualization.DataTable();
+          // dataTable.addColumn('string', 'State');
+          // dataTable.addColumn('number', 'Deaths by Opioid Overdose');
+          // dataTable.addRows(tableRow);
+
+          // var dataTable = new google.visualization.DataTable([
+          //     ['State', 'Deaths by Opioid Overdose', {role : 'style'}],
+          //     ['tableRow[0]', 'color: gray']
+
+          //   ]);
+
+          var dataTable = google.visualization.arrayToDataTable([
+            ['State', 'Deaths by Opioid Overdose', { role: 'style' } ],
+            [tableRow[0][0], tableRow[0][1], 'color: blue'],
+            [tableRow[1][0], tableRow[1][1], 'color: blue'],
+            [tableRow[2][0], tableRow[2][1], 'color: blue'],
+            [tableRow[3][0], tableRow[3][1], 'opacity: 0.5'],
+            [tableRow[4][0], tableRow[4][1], 'opacity: 0.5'],
+            [tableRow[5][0], tableRow[5][1], 'opacity: 0.5'],
+            [tableRow[6][0], tableRow[6][1], 'opacity: 0.5'],
+            [tableRow[7][0], tableRow[7][1], 'opacity: 0.5'],
+            [tableRow[8][0], tableRow[8][1], 'opacity: 0.5'],
+            [tableRow[9][0], tableRow[9][1], 'opacity: 0.5'],
+      ]);
+
+
+          // Set chart options
+          var options = {'title':'State vs Deaths Caused By Opioid Overdose',
+                         'width':550,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 2000,
+                          'easing': 'out',
+                         },
+                         'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '80%', 'height': '60%'},
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+          chart1.draw(dataTable, options);
+      }
+
+      function drawChart2() {
+          var M=<%- male %>;
+          var F=<%- female %>;
+
+        var data = google.visualization.arrayToDataTable([
+          ['Gender', 'Type'],
+          ['Male', M],
+          ['Female', F],
+        ]);
+
+        var options = {
+                      'title': 'Opioid Doctor - Gender Distribution',
+                      'width':250,
+                      'height':300,
+                      'animation':{
+                          'startup': true,
+                          'duration': 2000,
+                          'easing': 'out',
+                         },
+                      'backgroundColor':'#FAF6F5',
+                      'colors': ['#80aaff', '#ff4d6a'],
+                      'legend': {'position': 'bottom', 'alignment':'center'},
+                      'chartArea': {'width': '80%', 'height': '60%'}
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
+        chart2.draw(data, options);
+      }
+
+      function drawChart3() {
+          var statevspres_col=<%- statevspres_col %>;
+          var statevspres_row=<%- statevspres_row %>;
+
+          // Create the data table.
+          // var dataTable3 = new google.visualization.DataTable();
+          // dataTable3.addColumn('string', 'State');
+          // dataTable3.addColumn('number', 'Prescription Count');
+       
+          // dataTable3.addRows(statevspres_row);
+
+          var dataTable3 = google.visualization.arrayToDataTable([
+            ['State', 'Prescription Count', { role: 'style' } ],
+            [statevspres_row[0][0], statevspres_row[0][1], 'opacity: 0.5'],
+            [statevspres_row[1][0], statevspres_row[1][1], 'opacity: 0.5'],
+            [statevspres_row[2][0], statevspres_row[2][1], 'opacity: 0.5'],
+            [statevspres_row[3][0], statevspres_row[3][1], 'opacity: 0.5'],
+            [statevspres_row[4][0], statevspres_row[4][1], 'opacity: 0.5'],
+            [statevspres_row[5][0], statevspres_row[5][1], 'opacity: 0.5'],
+            [statevspres_row[6][0], statevspres_row[6][1], 'opacity: 0.5'],
+            [statevspres_row[7][0], statevspres_row[7][1], 'opacity: 0.5'],
+            [statevspres_row[8][0], statevspres_row[8][1], 'color: blue'],
+            [statevspres_row[9][0], statevspres_row[9][1], 'color: blue'],
+          ]);
+
+          // Set chart options
+          var options3 = {'title':'Top 10 States with most Opioid Drugs Prescribed',
+                         'width':565,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 2000,
+                          'easing': 'out',
+                         },
+                         'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '70%', 'height': '60%'},
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart3 = new google.visualization.BarChart(document.getElementById('chart_div3'));
+          chart3.draw(dataTable3, options3);
+      }
+
+      function drawChart4() {
+          var specvspres_col=<%- specvspres_col %>;
+          var specvspres_row=<%- specvspres_row %>;
+
+          // Create the data table.
+          // var dataTable4 = new google.visualization.DataTable();
+          // dataTable4.addColumn('string', 'Specialization');
+          // dataTable4.addColumn('number', 'Number of drugs prescribed by the Doctor');
+       
+          // dataTable4.addRows(specvspres_row);
+
+          var dataTable4 = google.visualization.arrayToDataTable([
+            ['Specialization', 'Number of drugs prescribed by the Doctor', { role: 'style' } ],
+            [specvspres_row[0][0], specvspres_row[0][1], 'color : blue'],
+            [specvspres_row[1][0], specvspres_row[1][1], 'color : blue'],
+            [specvspres_row[2][0], specvspres_row[2][1], 'color : blue'],
+            [specvspres_row[3][0], specvspres_row[3][1], 'opacity: 0.5'],
+            [specvspres_row[4][0], specvspres_row[4][1], 'opacity: 0.5'],
+            [specvspres_row[5][0], specvspres_row[5][1], 'opacity: 0.5'],
+            [specvspres_row[6][0], specvspres_row[6][1], 'opacity: 0.5'],
+            [specvspres_row[7][0], specvspres_row[7][1], 'opacity: 0.5'],
+            [specvspres_row[8][0], specvspres_row[8][1], 'opacity: 0.5'],
+            [specvspres_row[9][0], specvspres_row[9][1], 'opacity: 0.5'],
+          ]);
+
+          // Set chart options
+          var options4 = {'title':'Specialty vs # Opioid Drugs Prescribed ( x 10^(4))',
+                         'width':850,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 2000,
+                          'easing': 'out',
+                         },
+                         'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '80%', 'height': '60%'},
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart4 = new google.visualization.ColumnChart(document.getElementById('chart_div4'));
+          chart4.draw(dataTable4, options4);
+      }
+
+      function drawChart5() {
+          var statevsdeath_columns=<%- statevsdeath_columns %>;
+          var statevsdeath_rows=<%- statevsdeath_rows %>;
+
+          // Create the data table.
+          // var dataTable5 = new google.visualization.DataTable();
+          // dataTable5.addColumn('string', 'State');
+          // dataTable5.addColumn('number', 'Death Ratio (Deaths by Opioid Overdose / Population)');
+       
+          // dataTable5.addRows(statevsdeath_rows);
+
+          var dataTable5 = google.visualization.arrayToDataTable([
+            ['State', 'Death Ratio (Deaths by Opioid Overdose/Population)', { role: 'style' } ],
+            [statevsdeath_rows[0][0], statevsdeath_rows[0][1], 'color : blue'],
+            [statevsdeath_rows[1][0], statevsdeath_rows[1][1], 'color : blue'],
+            [statevsdeath_rows[2][0], statevsdeath_rows[2][1], 'color : blue'],
+            [statevsdeath_rows[3][0], statevsdeath_rows[3][1], 'opacity: 0.5'],
+            [statevsdeath_rows[4][0], statevsdeath_rows[4][1], 'opacity: 0.5'],
+            [statevsdeath_rows[5][0], statevsdeath_rows[5][1], 'opacity: 0.5'],
+            [statevsdeath_rows[6][0], statevsdeath_rows[6][1], 'opacity: 0.5'],
+            [statevsdeath_rows[7][0], statevsdeath_rows[7][1], 'opacity: 0.5'],
+            [statevsdeath_rows[8][0], statevsdeath_rows[8][1], 'opacity: 0.5'],
+            [statevsdeath_rows[9][0], statevsdeath_rows[9][1], 'opacity: 0.5'],
+          ]);
+
+          // Set chart options
+          var options5 = {'title':'State vs Death Rate Due to Opioid Consumption ( x 10^(-4))',
+                         'width':525,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 2000,
+                          'easing': 'out',
+                         },
+                         'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '80%', 'height': '60%'},
+                         'vAxis' : { 'gridlines': { 'count': 4 } },
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart5 = new google.visualization.ColumnChart(document.getElementById('chart_div5'));
+          chart5.draw(dataTable5, options5);
+      }
+
+    </script>
+  </head>
+
+  <body>
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+    <h2>DashBoard</h2>
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/home">Homepage</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/feedback">Feedback</a>
+    <a href="/aboutUs">About Us</a>
+    </div>
+
+    <div>
+          <!--Div that will hold the pie chart-->
+          <div style="position: relative;" id="chart_div1"></div>
+          <div style="position: relative;" id="chart_div2"></div>
+          <div style="position: relative;" id="chart_div3"></div>
+          <div style="position: relative;" id="chart_div4"></div>
+          <div style="position: relative;" id="chart_div5"></div>
+    </div>
+
+  </body>
+
+  <script type="text/javascript" src="/routes/nav.js"></script>
+
+</html>

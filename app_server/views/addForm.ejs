@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/index.css"> -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <script type="text/javascript" src="/jquery-ui-theme/external/jquery/jquery.js"></script>
+   <script type="text/javascript" src="/jquery-ui-theme/jquery-ui.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="/stylesheets/addForm.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/feedback.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/popup.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/aboutUs.css">
+</head>
+
+<body onload = "init()" class="bg-img">
+
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+  <!-- <a href="/home"><h2 class="center" >Opioid Webpage</h2></a> -->
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/home">Homepage</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/feedback">Feedback</a>
+    <a href="/aboutUs">About Us</a>
+    <!-- <a href="#">About Us</a> -->
+  </div>
+
+  <div id="myAddForm" >
+    <form class="container" action="/overdose">
+      <h1>Insert New Data</h1>
+
+      <label for="state"><b>State</b></label>
+      <input type="text" id = "state" placeholder="Enter State Name" name="state" required>
+
+      <label for="pop"><b>Population</b></label>
+      <input type="text" id = "population" placeholder="Enter Population of state" name="pop"required>
+
+      <label for="death"><b>Deaths</b></label>
+      <input type="text" id = "death" placeholder="Enter no. of deaths caused by opm overdose" name="death" required>
+          
+      <label for="abbr"><b>State Abbreviation</b></label>
+      <input type="text" id = "abbreviation" placeholder="Enter Abbreviation for state" name="abbr" required>
+
+      <button type="submit" class="btn" onclick="openAddForm()" >Add Record</button>
+    </form>
+  </div>
+</body>
+
+<script type="text/javascript">
+
+      function init() {
+          link = window.location.pathname;
+          vals = link.split("/");
+          document.getElementById('state').value = vals[vals.length-1];
+        }
+
+      function openAddForm() {
+            state_name = document.getElementById("state").value.toLowerCase();
+            population = document.getElementById("population").value;
+            death = document.getElementById("death").value;
+            abbr = document.getElementById("abbreviation").value;
+
+            data_val = {
+              "State":state_name,
+              "Population":population,
+              "Deaths":death,
+              "Abbrev":abbr
+            }
+
+            data_string = JSON.stringify(data_val);
+
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "http://localhost:3000/addOverdose",
+              "method": "POST",
+              "headers": {
+                "Content-Type": "application/json",
+                "Cache-Control": "no-cache"
+              },
+              "processData": false,
+              "data": data_string
+            }
+
+            $.ajax(settings).done(function (response) {
+              alert("Data Added");
+              window.open("http://localhost:3000/overdose/","_self");
+            });            
+        }
+    </script>
+
+    <script type="text/javascript" src="/routes/nav.js"></script>
+</html>

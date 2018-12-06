@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>State Charts</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/feedback.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/popup.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  	<style>
+		  .button {
+		  	background-color: #52527a;
+		  	border: none;
+		  	color: white;
+		  	padding: 15px 32px;
+		  	text-align: center;
+		  	text-decoration: none;
+		  	display: inline-block;
+		  	font-size: 16px;
+		  	margin: 4px 2px;
+		  	cursor: pointer;
+		  }
+	 </style>
+
+  	<script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.setOnLoadCallback(drawChart1);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+      google.charts.setOnLoadCallback(drawChart4);
+      google.charts.setOnLoadCallback(drawChart5);
+
+      function drawChart1() {
+          // var columns=<%- columns %>;
+          var tableRow=<%- tableRow %>;
+
+          var dataTable = google.visualization.arrayToDataTable([
+            ['Number of Deaths', 'Drug Name', { role: 'style' } ],
+            // [tableRow[0][0], tableRow[0][1], 'color: blue'],
+            [tableRow[0][0], tableRow[0][1], 'opacity: 1.0'],
+            [tableRow[1][0], tableRow[1][1], 'opacity: 0.95'],
+            [tableRow[2][0], tableRow[2][1], 'opacity: 0.9'],
+            [tableRow[3][0], tableRow[3][1], 'opacity: 0.85'],
+            [tableRow[4][0], tableRow[4][1], 'opacity: 0.8'],
+            [tableRow[5][0], tableRow[5][1], 'opacity: 0.75'],
+            [tableRow[6][0], tableRow[6][1], 'opacity: 0.7'],
+            [tableRow[7][0], tableRow[7][1], 'opacity: 0.65'],
+            [tableRow[8][0], tableRow[8][1], 'opacity: 0.6'],
+            [tableRow[9][0], tableRow[9][1], 'opacity: 0.55'],
+            [tableRow[10][0], tableRow[10][1], 'opacity: 0.5'],
+            [tableRow[11][0], tableRow[11][1], 'opacity: 0.45'],
+            [tableRow[12][0], tableRow[12][1], 'opacity: 0.4'],
+      ]);
+
+          // Set chart options
+          var options = {'title':'Deaths by Drug type',
+                         'width':800,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 3000,
+                          'easing': 'out',
+                         },
+                         // 'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '85%', 'height': '60%'},
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart1 = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+          chart1.draw(dataTable, options);
+      }
+
+      function drawChart2() {
+          var M=<%- male %>;
+          var F=<%- female %>;
+
+        var data = google.visualization.arrayToDataTable([
+          ['Gender', 'Type'],
+          ['Male', M],
+          ['Female', F],
+        ]);
+
+        var options = {
+                      'title': 'Gender Distribution of Death due to Drug Overdose',
+                      'width':250,
+                      'height':300,
+                      'animation':{
+                          'startup': true,
+                          'duration': 3000,
+                          'easing': 'out',
+                         },
+                      // 'backgroundColor':'#FAF6F5',
+                      'colors': ['#80aaff', '#ff4d6a'],
+                      'legend': {'position': 'bottom', 'alignment':'center'},
+                      'chartArea': {'width': '65%', 'height': '60%'}
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
+        chart2.draw(data, options);
+      }
+
+      function drawChart3() {
+          var deathByRaceColumn=<%- deathByRaceColumn %>;
+          var deathByRaceRow=<%- deathByRaceRow %>;
+
+          var dataTable = google.visualization.arrayToDataTable([
+            ['Race', 'Death', { role: 'style' } ],
+            // [deathByRaceRow[0][0], deathByRaceRow[0][1], 'opacity: 0.5'],
+            [deathByRaceRow[0][0], deathByRaceRow[0][1], 'opacity: 1.0'],
+            [deathByRaceRow[1][0], deathByRaceRow[1][1], 'opacity: 0.8'],
+            [deathByRaceRow[2][0], deathByRaceRow[2][1], 'opacity: 0.6'],
+            [deathByRaceRow[3][0], deathByRaceRow[3][1], 'opacity: 0.4'],
+            [deathByRaceRow[4][0], deathByRaceRow[4][1], 'opacity: 0.2'],
+      ]);
+
+          // Set chart options
+          var options = {'title':'Total Deaths by Race',
+                         'width':500,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 3000,
+                          'easing': 'out',
+                         },
+                         // 'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '70%', 'height': '60%'},
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart3 = new google.visualization.BarChart(document.getElementById('chart_div3'));
+          chart3.draw(dataTable, options);
+      }
+
+      function drawChart4() {
+          var deathbyrace=<%- deathbyrace %>;
+
+          var dataTable = google.visualization.arrayToDataTable([
+            ['Age', 'White', 'Hispanic', 'Black' ],
+            ['10', deathbyrace[0][0], deathbyrace[0][1], deathbyrace[0][2]],
+            ['20', deathbyrace[1][0], deathbyrace[1][1], deathbyrace[1][2]],
+            ['30', deathbyrace[2][0], deathbyrace[2][1], deathbyrace[2][2]],
+            ['40', deathbyrace[3][0], deathbyrace[3][1], deathbyrace[3][2]],
+            ['50', deathbyrace[4][0], deathbyrace[4][1], deathbyrace[4][2]],
+            ['60', deathbyrace[5][0], deathbyrace[5][1], deathbyrace[5][2]],
+            ['70', deathbyrace[6][0], deathbyrace[6][1], deathbyrace[6][2]],
+            ['80', deathbyrace[7][0], deathbyrace[7][1], deathbyrace[7][2]],
+            ['90', deathbyrace[8][0], deathbyrace[8][1], deathbyrace[8][2]],
+            ['100',deathbyrace[9][0], deathbyrace[9][1], deathbyrace[9][2]],
+      ]);
+
+          // Set chart options
+          var options = {'title':'Age Distribution of Deceased by Race',
+                         'width':500,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 3000,
+                          'easing': 'out',
+                         },
+                         'curveType': 'function',
+                         // 'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '70%', 'height': '60%'},
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart4 = new google.visualization.LineChart(document.getElementById('chart_div4'));
+          chart4.draw(dataTable, options);
+      }
+
+      function drawChart5() {
+          var location=<%- location %>;
+
+          var dataTable = google.visualization.arrayToDataTable([
+            ['Location', 'Deaths', { role: 'style' } ],
+            [location[0][0], location[0][1], 'opacity: 1.0'],
+            [location[1][0], location[1][1], 'opacity: 0.8'],
+            [location[2][0], location[2][1], 'opacity: 0.6'],
+            [location[3][0], location[3][1], 'opacity: 0.4'],
+            [location[4][0], location[4][1], 'opacity: 0.2'],
+      ]);
+
+          // Set chart options
+          var options = {'title':'Incident Location',
+                         'width':500,
+                         'height':300,
+                         'animation':{
+                          'startup': true,
+                          'duration': 3000,
+                          'easing': 'out',
+                         },
+                         // 'backgroundColor':'#FAF6F5',
+                         'chartArea': {'width': '70%', 'height': '60%'},
+                         'legend': {'position': 'bottom', 'alignment':'center'}
+          };
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart5 = new google.visualization.ColumnChart(document.getElementById('chart_div5'));
+          chart5.draw(dataTable, options);
+      }
+
+    </script>
+</head>
+
+<body>
+
+    <div style="margin-left: 100px; margin-right: 200px;" >
+    	  <div style="padding: 10px; border: none; margin-right: 100px" id="chart_div1"></div>
+        <div style="padding: 10px; border: none" id="chart_div4"></div>
+        <div style="padding: 10px; border: none" id="chart_div3"></div>
+        <div style="padding: 10px; border: none ; margin-right: 100px" id="chart_div2"></div>
+        <div style="padding: 10px; border: none" id="chart_div5"></div>
+        <!-- style="position: relative;" -->
+    </div>
+
+  </body>
+
+  <script type="text/javascript" src="/routes/nav.js"></script>
+
+</html>
